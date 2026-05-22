@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { evaluate } from './evaluation';
-import { initialState } from '../game/rules';
+import { applyMove, initialState } from '../game/rules';
 import type { GameState, SmallBoardStatus } from '../game/types';
 
 describe('evaluate', () => {
@@ -28,6 +28,17 @@ describe('evaluate', () => {
     statuses[4] = 'X';
     const s: GameState = { ...initialState(), smallBoardStatuses: statuses };
     expect(evaluate(s)).toBeGreaterThan(0);
+  });
+
+  it('produces a non-zero score after a single opening move', () => {
+    const s = applyMove(initialState(), { boardIdx: 4, cellIdx: 4, player: 'X' });
+    expect(evaluate(s)).toBeGreaterThan(0);
+  });
+
+  it('values center-of-center higher than corner-of-center as an opening', () => {
+    const center = applyMove(initialState(), { boardIdx: 4, cellIdx: 4, player: 'X' });
+    const corner = applyMove(initialState(), { boardIdx: 4, cellIdx: 0, player: 'X' });
+    expect(evaluate(center)).toBeGreaterThan(evaluate(corner));
   });
 
   it('is symmetric under player swap', () => {

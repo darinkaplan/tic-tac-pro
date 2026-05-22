@@ -65,7 +65,7 @@ function minimax(
   }
 }
 
-function buildReasoning(state: GameState, move: Move, score: number, totalCandidates: number): string {
+function buildReasoning(state: GameState, move: Move, _score: number, totalCandidates: number): string {
   const next = applyMove(state, move);
   const opponent: Player = move.player === 'X' ? 'O' : 'X';
   let effect = '';
@@ -80,7 +80,7 @@ function buildReasoning(state: GameState, move: Move, score: number, totalCandid
     effect = `Sends ${opponent} to board ${next.forcedBoard}.`;
   }
 
-  return `Best of ${totalCandidates} candidates (score ${score.toFixed(0)}). ${effect}`;
+  return `Best of ${totalCandidates} candidates. ${effect}`;
 }
 
 function didBlock(state: GameState, move: Move, opponent: Player): boolean {

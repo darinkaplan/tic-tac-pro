@@ -29,10 +29,10 @@ describe('pickMediumMove', () => {
     }
   });
 
-  it('reasoning includes the score and candidate count', () => {
+  it('reasoning includes the candidate count and an effect description', () => {
     const choice = pickMediumMove(initialState(), { seed: 1, depth: 2 });
-    expect(choice.reasoning).toMatch(/score/i);
     expect(choice.reasoning).toMatch(/\d+ candidate/i);
+    expect(choice.reasoning).toMatch(/sends|wins|blocks/i);
   });
 
   it('plays a complete game without throwing (depth 2)', () => {

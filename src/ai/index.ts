@@ -1,3 +1,5 @@
+import { pickEasyMove } from './easy';
+import { pickMediumMove } from './medium';
 import type { GameState, Move } from '../game/types';
 
 export type AILevel = 'easy' | 'medium';
@@ -18,7 +20,7 @@ export interface AIOptions {
   depth?: number;
 }
 
-// Stub: real implementation lands in Task 5.
-export function pickAIMove(_level: AILevel, _state: GameState, _opts: AIOptions): AIChoice {
-  throw new Error('pickAIMove: not implemented yet (Task 5)');
+export function pickAIMove(level: AILevel, state: GameState, opts: AIOptions): AIChoice {
+  if (level === 'easy') return pickEasyMove(state, opts);
+  return pickMediumMove(state, opts);
 }

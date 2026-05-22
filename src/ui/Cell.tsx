@@ -18,12 +18,12 @@ export function Cell({ value, onClick, disabled }: CellProps) {
         'aspect-square w-full',
         'flex items-center justify-center',
         'text-2xl md:text-3xl font-bold',
-        'bg-atsf-navy/40 hover:bg-atsf-navy-light/40',
-        'disabled:hover:bg-atsf-navy/40 disabled:cursor-not-allowed',
-        'border border-atsf-navy-light/30',
+        'bg-atsf-surface hover:bg-atsf-surface-hover',
+        'disabled:hover:bg-atsf-surface disabled:cursor-not-allowed',
+        'border border-atsf-rule',
         'transition-colors',
-        isX ? 'text-atsf-gold' : '',
-        isO ? 'text-atsf-cream' : '',
+        isX ? 'text-atsf-ink' : '',
+        isO ? 'text-atsf-gold' : '',
       ].join(' ')}
       aria-label={value ?? 'empty cell'}
     >

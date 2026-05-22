@@ -12,7 +12,7 @@ export function BigBoard({ state, onMove }: BigBoardProps) {
   const playableBoards = new Set(legal.map((m) => m.boardIdx));
 
   return (
-    <div className="grid grid-cols-3 gap-2 md:gap-3 p-2 md:p-3 bg-atsf-navy rounded-lg shadow-2xl">
+    <div className="grid grid-cols-3 gap-2 md:gap-3 p-2 md:p-3 bg-atsf-parchment rounded-lg shadow-xl shadow-atsf-ink/15">
       {state.smallBoards.map((cells, boardIdx) => (
         <SmallBoard
           key={boardIdx}

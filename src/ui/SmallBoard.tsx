@@ -18,9 +18,9 @@ export function SmallBoard({ cells, status, isForced, isPlayable, onCellClick }:
   const wrapperClasses = [
     'relative grid grid-cols-3 gap-0.5 p-1 rounded',
     'border-2 transition-all',
-    isForced ? 'border-atsf-gold ring-2 ring-atsf-gold/50' : 'border-atsf-navy-light/40',
-    !isPlayable && !isWon && !isDrawn ? 'opacity-40' : '',
-    isWon ? 'bg-atsf-navy-light/30' : 'bg-atsf-navy-dark/40',
+    isForced ? 'border-atsf-gold ring-2 ring-atsf-gold/40' : 'border-atsf-border',
+    !isPlayable && !isWon && !isDrawn ? 'opacity-50' : '',
+    'bg-atsf-surface',
   ].join(' ');
 
   return (
@@ -34,13 +34,13 @@ export function SmallBoard({ cells, status, isForced, isPlayable, onCellClick }:
         />
       ))}
       {isWon && (
-        <div className="absolute inset-0 flex items-center justify-center bg-atsf-navy-dark/70 rounded pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center bg-atsf-surface/85 rounded pointer-events-none">
           <span className="text-6xl md:text-7xl font-black text-atsf-gold">{status}</span>
         </div>
       )}
       {isDrawn && (
-        <div className="absolute inset-0 flex items-center justify-center bg-atsf-navy-dark/70 rounded pointer-events-none">
-          <span className="text-2xl font-bold text-atsf-cream/70 uppercase tracking-widest">draw</span>
+        <div className="absolute inset-0 flex items-center justify-center bg-atsf-surface/85 rounded pointer-events-none">
+          <span className="text-2xl font-bold text-atsf-ink-muted uppercase tracking-widest">draw</span>
         </div>
       )}
     </div>

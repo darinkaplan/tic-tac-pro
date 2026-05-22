@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-atsf-navy-dark text-atsf-cream antialiased min-h-screen;
+    @apply bg-atsf-paper text-atsf-ink antialiased min-h-screen;
   }
 }

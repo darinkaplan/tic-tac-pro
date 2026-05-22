@@ -21,8 +21,21 @@ Game logic must be testable in isolation. AI must be testable without rendering.
 ## Move encoding
 `{ boardIdx: 0-8, cellIdx: 0-8 }` — both row-major. `boardIdx = row * 3 + col` on the big board; `cellIdx = row * 3 + col` within the small board.
 
-## Brand
-ATSF: navy `#103B73` primary, gold `#D4A017` accent. Formal, professional, premium feel. Brand tokens live in `tailwind.config.js` under `theme.extend.colors.atsf`.
+## Brand — Notebook Cream theme
+Light, warm, paper-classroom feel — reads like premium course material. Brand tokens live in `tailwind.config.js` under `theme.extend.colors.atsf`:
+
+- `paper` `#F7F2E6` — page background (warm cream)
+- `parchment` `#ECE4D0` — big-board panel (slightly deeper cream)
+- `surface` `#FFFFFF` — cell + small-board surface
+- `surface-hover` `#F2EAD4` — cell hover (warm)
+- `rule` `#E5DCC2` — hairline borders inside cells
+- `border` `#D6CCB0` — outer small-board border
+- `ink` `#1B3A6B` — primary text + X piece + secondary button (navy)
+- `ink-muted` `#6B7896` — secondary text
+- `gold` `#B8860B` — headline, O piece, primary button (deep gold)
+- `gold-light` `#D4A017` — primary button hover
+
+The dark-mode tokens (`navy/cream/navy-light/...`) are gone — single light theme.
 
 ## Commands
 - `npm run dev` — dev server

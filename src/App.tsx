@@ -14,9 +14,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
-      <header className="mb-4">
+      <header className="mb-4 text-center">
         <h1 className="text-3xl md:text-4xl font-black text-atsf-gold tracking-tight">Tic-Tac-Pro</h1>
-        <p className="text-xs text-atsf-cream/50 text-center mt-1">Advantage Testing</p>
+        <p className="text-xs text-atsf-ink-muted mt-1">Advantage Testing</p>
       </header>
       <GameStatus state={state} />
       <div className="w-full max-w-2xl">

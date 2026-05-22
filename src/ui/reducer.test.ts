@@ -24,12 +24,39 @@ describe('reducer — game actions', () => {
     expect(s1.ui.reasoningHistory[0]!.byAI).toBe(false);
   });
 
-  it('UNDO removes the last reasoning entry', () => {
+  it('UNDO removes the last reasoning entry in local-2p mode (single-pop)', () => {
     let s = initialAppState();
     s = reducer(s, { type: 'MOVE', move: { boardIdx: 0, cellIdx: 0, player: 'X' } });
     s = reducer(s, { type: 'MOVE', move: { boardIdx: 0, cellIdx: 1, player: 'O' } });
     const undone = reducer(s, { type: 'UNDO' });
     expect(undone.ui.reasoningHistory).toHaveLength(1);
+    expect(undone.game.history).toHaveLength(1);
+  });
+
+  it('UNDO pops 2 in vs-easy mode (rewinds past the AI reply to the human turn)', () => {
+    let s = initialAppState('vs-easy');
+    s = reducer(s, { type: 'MOVE', move: { boardIdx: 4, cellIdx: 4, player: 'X' } });
+    s = reducer(s, { type: 'MOVE', move: { boardIdx: 4, cellIdx: 0, player: 'O' }, reasoning: 'AI move' });
+    const undone = reducer(s, { type: 'UNDO' });
+    expect(undone.game.history).toHaveLength(0);
+    expect(undone.game.currentPlayer).toBe('X');
+    expect(undone.ui.reasoningHistory).toHaveLength(0);
+  });
+
+  it('UNDO pops 1 in vs-easy when only the human has moved (AI hasn\'t replied yet)', () => {
+    let s = initialAppState('vs-easy');
+    s = reducer(s, { type: 'MOVE', move: { boardIdx: 4, cellIdx: 4, player: 'X' } });
+    const undone = reducer(s, { type: 'UNDO' });
+    expect(undone.game.history).toHaveLength(0);
+    expect(undone.game.currentPlayer).toBe('X');
+  });
+
+  it('UNDO pops 1 in watch mode (easy-vs-easy)', () => {
+    let s = initialAppState('easy-vs-easy');
+    s = reducer(s, { type: 'MOVE', move: { boardIdx: 4, cellIdx: 4, player: 'X' }, reasoning: 'AI' });
+    s = reducer(s, { type: 'MOVE', move: { boardIdx: 4, cellIdx: 0, player: 'O' }, reasoning: 'AI' });
+    const undone = reducer(s, { type: 'UNDO' });
+    expect(undone.game.history).toHaveLength(1);
   });
 
   it('NEW_GAME resets game and reasoning, optionally setting mode', () => {

@@ -65,12 +65,18 @@ export function reducer(state: AppState, action: Action): AppState {
     }
     case 'UNDO': {
       if (state.game.history.length === 0) return state;
-      const moves = state.game.history.slice(0, -1);
+      // In human-vs-AI modes, popping a single move puts the AI on turn and
+      // it deterministically replays the same move — so undo pops 2 to land
+      // back on the human's previous decision point. If there's only 1 move
+      // (human played, AI hasn't replied yet) we still pop 1.
+      const isVsAI = state.ui.mode === 'vs-easy' || state.ui.mode === 'vs-medium';
+      const popCount = isVsAI && state.game.history.length >= 2 ? 2 : 1;
+      const moves = state.game.history.slice(0, -popCount);
       let game = initialState();
       for (const m of moves) game = applyMove(game, m);
       return {
         game,
-        ui: { ...state.ui, reasoningHistory: state.ui.reasoningHistory.slice(0, -1) },
+        ui: { ...state.ui, reasoningHistory: state.ui.reasoningHistory.slice(0, -popCount) },
       };
     }
     case 'SET_MODE':

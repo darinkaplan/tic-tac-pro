@@ -28,5 +28,10 @@ ATSF: navy `#103B73` primary, gold `#D4A017` accent. Formal, professional, premi
 - `npm run dev` — dev server
 - `npm test` — run all tests once
 - `npm run test:watch` — watch mode
-- `npm run build` — production build
+- `npm run typecheck` — strict-mode type check (Vitest does NOT type-check)
+- `npm run lint` — ESLint
+- `npm run build` — production build (typecheck + vite build)
 - `npm run preview` — preview production build locally
+
+## Tests
+Co-located as `*.test.ts(x)` next to source files. Vitest runs them.

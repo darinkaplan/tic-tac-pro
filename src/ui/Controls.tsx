@@ -1,12 +1,19 @@
+import { ModeSelector } from './ModeSelector';
+import type { GameMode } from './types';
+
 interface ControlsProps {
+  mode: GameMode;
+  onModeChange: (mode: GameMode) => void;
   onNewGame: () => void;
   onUndo: () => void;
   canUndo: boolean;
+  modeChangeDisabled: boolean;
 }
 
-export function Controls({ onNewGame, onUndo, canUndo }: ControlsProps) {
+export function Controls({ mode, onModeChange, onNewGame, onUndo, canUndo, modeChangeDisabled }: ControlsProps) {
   return (
-    <div className="flex gap-3 justify-center py-4">
+    <div className="flex flex-wrap items-center justify-center gap-3 py-4">
+      <ModeSelector value={mode} onChange={onModeChange} disabled={modeChangeDisabled} />
       <button
         type="button"
         onClick={onNewGame}

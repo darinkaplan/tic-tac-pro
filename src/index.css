@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-atsf-navy-dark text-atsf-cream antialiased min-h-screen;
+  }
+}

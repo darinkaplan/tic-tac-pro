@@ -5,7 +5,8 @@ import { GameStatus } from './ui/GameStatus';
 import { Controls } from './ui/Controls';
 import { AIControls } from './ui/AIControls';
 import { TeachingPanel } from './ui/TeachingPanel';
-import { pickAIMove, type AILevel } from './ai';
+import { type AILevel } from './ai';
+import { pickAIMoveAsync } from './ai/workerClient';
 import type { GameMode } from './ui/types';
 import type { Player } from './game/types';
 
@@ -29,9 +30,9 @@ export default function App() {
   const anyAI = state.ui.mode !== 'local-2p';
   const isWatchMode = state.ui.mode === 'easy-vs-easy' || state.ui.mode === 'medium-vs-medium';
 
-  // AI move dispatch. Triggers when:
-  //   - vs-easy / vs-medium and it's the AI's turn (immediate, short delay)
-  //   - watch mode AND autoPlay is on (delay = autoPlaySpeedMs)
+  // AI move dispatch via Web Worker (non-blocking). Triggers when:
+  //   - vs-easy / vs-medium and it's the AI's turn (short delay before posting)
+  //   - watch mode AND autoPlay is on (autoPlaySpeedMs delay)
   useEffect(() => {
     if (aiLevel === null || state.ui.aiThinking) return;
     const shouldFire = state.ui.autoPlay || !isWatchMode;
@@ -40,15 +41,18 @@ export default function App() {
     const delay = isWatchMode ? state.ui.autoPlaySpeedMs : 350;
     autoPlayTimer.current = setTimeout(() => {
       dispatch({ type: 'SET_AI_THINKING', thinking: true });
-      // Give React a tick to paint "thinking…" before minimax fires.
-      setTimeout(() => {
-        try {
-          const choice = pickAIMove(aiLevel, state.game, { seed: state.ui.seed, depth: 4 });
-          dispatch({ type: 'MOVE', move: choice.move, reasoning: choice.reasoning });
-        } finally {
+      pickAIMoveAsync(aiLevel, state.game, { seed: state.ui.seed, depth: 4 })
+        .then((choice) => {
+          dispatch({
+            type: 'MOVE',
+            move: choice.move,
+            reasoning: choice.reasoning,
+            candidates: choice.candidates,
+          });
+        })
+        .finally(() => {
           dispatch({ type: 'SET_AI_THINKING', thinking: false });
-        }
-      }, 0);
+        });
     }, delay);
 
     return () => {
@@ -68,14 +72,18 @@ export default function App() {
   const handleStep = () => {
     if (aiLevel === null || state.ui.aiThinking) return;
     dispatch({ type: 'SET_AI_THINKING', thinking: true });
-    setTimeout(() => {
-      try {
-        const choice = pickAIMove(aiLevel, state.game, { seed: state.ui.seed, depth: 4 });
-        dispatch({ type: 'MOVE', move: choice.move, reasoning: choice.reasoning });
-      } finally {
+    pickAIMoveAsync(aiLevel, state.game, { seed: state.ui.seed, depth: 4 })
+      .then((choice) => {
+        dispatch({
+          type: 'MOVE',
+          move: choice.move,
+          reasoning: choice.reasoning,
+          candidates: choice.candidates,
+        });
+      })
+      .finally(() => {
         dispatch({ type: 'SET_AI_THINKING', thinking: false });
-      }
-    }, 0);
+      });
   };
 
   const handleModeChange = (mode: GameMode) => {

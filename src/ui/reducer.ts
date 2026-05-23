@@ -1,5 +1,6 @@
 import { applyMove, initialState } from '../game/rules';
 import type { GameState, Move } from '../game/types';
+import type { ScoredMove } from '../ai';
 import type { GameMode, ReasoningEntry, UIState } from './types';
 
 export interface AppState {
@@ -8,7 +9,7 @@ export interface AppState {
 }
 
 export type Action =
-  | { type: 'MOVE'; move: Move; reasoning?: string }
+  | { type: 'MOVE'; move: Move; reasoning?: string; candidates?: ReadonlyArray<ScoredMove> }
   | { type: 'NEW_GAME'; mode?: GameMode }
   | { type: 'UNDO' }
   | { type: 'SET_MODE'; mode: GameMode }
@@ -44,6 +45,7 @@ export function reducer(state: AppState, action: Action): AppState {
         move: action.move,
         reasoning: action.reasoning ?? '',
         byAI: action.reasoning !== undefined,
+        candidates: action.candidates ?? [],
       };
       return {
         game,

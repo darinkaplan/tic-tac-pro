@@ -1,4 +1,5 @@
 import type { Move } from '../game/types';
+import type { ScoredMove } from '../ai';
 
 export type GameMode =
   | 'local-2p'
@@ -19,6 +20,8 @@ export interface ReasoningEntry {
   move: Move;
   reasoning: string;
   byAI: boolean;
+  /** Top-N scored alternatives from the AI's search. Empty for Easy AI and human moves. */
+  candidates: ReadonlyArray<ScoredMove>;
 }
 
 export interface UIState {

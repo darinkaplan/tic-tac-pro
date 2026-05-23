@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Background: warm cream (paper) -->
+  <rect width="1200" height="630" fill="#F7F2E6"/>
+
+  <!-- Left navy panel -->
+  <rect x="0" y="0" width="640" height="630" fill="#103B73"/>
+
+  <!-- Title block -->
+  <text x="72" y="220" font-family="Arial, Helvetica, sans-serif" font-size="98" font-weight="900" fill="#D4A017">Tic-Tac-Pro</text>
+  <text x="72" y="290" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#F5F1E8">Ultimate Tic-Tac-Toe</text>
+  <text x="72" y="338" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="500" fill="#F5F1E8">with an AI that teaches</text>
+
+  <!-- Divider line -->
+  <line x1="72" y1="410" x2="280" y2="410" stroke="#D4A017" stroke-width="4"/>
+
+  <!-- Attribution -->
+  <text x="72" y="468" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#F5F1E8">Advantage Testing</text>
+  <text x="72" y="502" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="500" fill="#F5F1E8" opacity="0.85">South Florida</text>
+
+  <!-- Right side: mini Ultimate board centered around (920, 315), size 420 -->
+  <g transform="translate(710, 105)">
+    <!-- Big-board panel background -->
+    <rect x="0" y="0" width="420" height="420" rx="14" fill="#ECE4D0"/>
+
+    <!-- 9 small boards, 3x3 grid. Each ~125x125 with 8px gap. -->
+    <!-- Helper: small board outline -->
+    <!-- Row 0 -->
+    <g transform="translate(15,15)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+    <g transform="translate(148,15)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+      <!-- O won this board -->
+      <text x="62" y="86" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900" text-anchor="middle" fill="#B8860B">O</text>
+    </g>
+    <g transform="translate(281,15)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+
+    <!-- Row 1 -->
+    <g transform="translate(15,148)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+    <!-- Center board: forced (gold border) with X in center -->
+    <g transform="translate(148,148)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D4A017" stroke-width="3"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+      <text x="62" y="86" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="900" text-anchor="middle" fill="#1B3A6B">X</text>
+    </g>
+    <g transform="translate(281,148)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(15,281)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+      <!-- X won this board -->
+      <text x="62" y="86" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="900" text-anchor="middle" fill="#1B3A6B">X</text>
+    </g>
+    <g transform="translate(148,281)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+    <g transform="translate(281,281)">
+      <rect width="125" height="125" rx="6" fill="#FFFFFF" stroke="#D6CCB0" stroke-width="2"/>
+      <g stroke="#E5DCC2" stroke-width="1">
+        <line x1="42" y1="6" x2="42" y2="119"/>
+        <line x1="83" y1="6" x2="83" y2="119"/>
+        <line x1="6" y1="42" x2="119" y2="42"/>
+        <line x1="6" y1="83" x2="119" y2="83"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom-right URL -->
+  <text x="1130" y="600" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="#1B3A6B" opacity="0.65" text-anchor="end">tic-tac-pro-psi.vercel.app</text>
+</svg>
